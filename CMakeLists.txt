@@ -14,7 +14,7 @@ find_package(ament_cmake REQUIRED)
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
-add_executable(lucia_vital_sub src/lucia_vital_sub.cpp)
+add_executable(lucia_vital_sub src/lucia_vital_sub.cpp src/ARM_CONTROLL.cpp src/DISPLAY.cpp)
 ament_target_dependencies(lucia_vital_sub
   rclcpp
   std_msgs
