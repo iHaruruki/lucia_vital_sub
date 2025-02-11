@@ -1,4 +1,9 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.16)
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_CXX_STANDARD 11)
+
 project(lucia_vital_sub)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
@@ -7,6 +12,8 @@ endif()
 
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(YARP REQUIRED)
+find_package(OpenCV REQUIRED)
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
@@ -14,10 +21,20 @@ find_package(ament_cmake REQUIRED)
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
-add_executable(lucia_vital_sub src/lucia_vital_sub.cpp src/ARM_CONTROLL.cpp src/DISPLAY.cpp)
+include_directories(lucia_vital_sub
+  ${YARP_INCLUDE_DIRS}
+  ${OpenCV_INCLUDE_DIRS}
+)
+
+add_executable(lucia_vital_sub src/lucia_vital_sub.cpp src/ARM_CONTROLL.cpp include/lucia_vital_sub/ARM_CONTROLL.h)
 ament_target_dependencies(lucia_vital_sub
   rclcpp
   std_msgs
+)
+
+target_link_libraries(lucia_vital_sub
+  ${YARP_LIBRARIES}
+  ${OpenCV_LIBRARIES}
 )
 
 install(TARGETS

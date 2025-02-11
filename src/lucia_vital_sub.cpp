@@ -7,7 +7,7 @@
  *
  * test-machine: nuc2,nuc28
  */
-#include "ARM_CONTROLL.h"
+#include "include/lucia_vital_sub/ARM_CONTROLL.h"
 
 #include <stdio.h>
 #include <stdlib.h>
